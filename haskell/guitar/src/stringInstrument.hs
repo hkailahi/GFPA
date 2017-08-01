@@ -76,7 +76,7 @@ isNoteOccurence p inst = fmap (fmap ((==) p)) inst
 showNoteOccurence :: PitchClass -> [[PitchClass]] -> [[Maybe PitchClass]]
 showNoteOccurence p inst = fmap (fmap (\x -> if (p==x) then Just p else Nothing)) inst
 
--- TODO Here lies an abomination, proof of concept
+-- Unoptimized
 mkFingerOnNote :: [PitchClass] -> [[PitchClass]] -> [Int -> Finger] -> Int -> Int -> [(Int, Finger)] -- int is lh, finger counter, then (string, finger fret)
 mkFingerOnNote [] _ _ _ _ = []
 mkFingerOnNote (x:[]) inst hand fCntr sCntr = let gStr = sCntr
