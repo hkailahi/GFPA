@@ -4,10 +4,6 @@ import Data.List
 import Data.Maybe
 import Data.Monoid
 
--- TODO look into reflections, possible localized type class generation at runtime, so we could
--- have proper pitch/chord spellings according to whatKey :: root -> tonality -> key
--- TODO we want data constructors, not typeclasses, so above may not help
--- Maybe we can make smart data constructors - https://wiki.haskell.org/Smart_constructors
 data PitchClass = C | Cs | D | Ds | E | F | Fs | G | Gs | A | As | B deriving (Ord, Enum, Eq, Bounded, Show)
 
 type Chord = [PitchClass]
@@ -81,7 +77,7 @@ mkChord p MinMaj13 = (mkChord p MinMaj11) <> chordify p [9]
 mkChord p Min13 = (mkChord p Min11) <> chordify p [5]
 mkChord p AugMaj13 = (mkChord p AugMaj11) <> chordify p [5]
 mkChord p Aug13 = (mkChord p Aug11) <> chordify p [5]
-mkChord p HDim13 = (mkChord p HDim11) <> chordify p [5]
+mkChord p HDim13 = (mkChord p HDim11) <> chordify p [5]  -- TODO C HDim13 wrongly returns [C,Ds,Fs,As,Cs,F,F], which doubles ending F
 -- Suspended
 -- mkChord p Sus4 = chordify p [99999]
 -- mkChord p Sus2 = chordify p [99999]
